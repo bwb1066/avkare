@@ -125,26 +125,36 @@ function decorateMegaMenu(li) {
   return wrapper;
 }
 
+function navLink(li) {
+  return li.querySelector(':scope > p > a') || li.querySelector(':scope > a');
+}
+
 function decorateNavItem(li) {
   li.classList.add('main-nav-item');
-  const link = li.querySelector(':scope > p > a');
+  const link = navLink(li);
   if (link) link.classList.add('main-nav-link');
   const menu = decorateMegaMenu(li) || decorateMenu(li);
-  if (!(menu || link)) return;
-  link.addEventListener('click', (e) => {
-    e.preventDefault();
-    toggleMenu(li);
-  });
+  const hasDropdown = menu || li.querySelector(':scope > ul');
+  if (!link && !hasDropdown) return;
+  // dropdown parents toggle their menu; plain links navigate normally
+  if (hasDropdown && link) {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      toggleMenu(li);
+    });
+  }
 }
 
 function decorateBrandSection(section) {
   section.classList.add('brand-section');
   const brandLink = section.querySelector('a');
   const [, text] = brandLink.childNodes;
-  const span = document.createElement('span');
-  span.className = 'brand-text';
-  span.append(text);
-  brandLink.append(span);
+  if (text) {
+    const span = document.createElement('span');
+    span.className = 'brand-text';
+    span.append(text);
+    brandLink.append(span);
+  }
 }
 
 function decorateNavSection(section) {
@@ -159,8 +169,13 @@ function decorateNavSection(section) {
   navContent.append(nav);
 
   const mainNavItems = section.querySelectorAll('nav > ul > li');
+  const { pathname } = window.location;
   for (const navItem of mainNavItems) {
     decorateNavItem(navItem);
+    const link = navLink(navItem);
+    if (link && new URL(link.href, window.location.href).pathname === pathname) {
+      navItem.classList.add('active');
+    }
   }
 }
 
