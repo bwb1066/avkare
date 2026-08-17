@@ -173,7 +173,10 @@ function decorateNavSection(section) {
   for (const navItem of mainNavItems) {
     decorateNavItem(navItem);
     const link = navLink(navItem);
-    if (link && new URL(link.href, window.location.href).pathname === pathname) {
+    const isDropdown = navItem.querySelector(':scope > ul');
+    // skip dropdown parents (their link is a placeholder "/", not a real page)
+    if (link && !isDropdown
+      && new URL(link.href, window.location.href).pathname === pathname) {
       navItem.classList.add('active');
     }
   }

@@ -1,4 +1,8 @@
 footer {
+  color-scheme: dark; /* footer is intentionally dark, independent of page scheme */
+  background-color: #231f20;
+  color: #fff;
+
   a {
     text-decoration: none;
   }

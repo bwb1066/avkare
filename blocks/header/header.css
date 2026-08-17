@@ -3,6 +3,7 @@ header {
   --logo-height: 46px;
   --mega-columns: 4;
 
+  color-scheme: light; /* nav + megamenu text stays black in dark mode too */
   display: block;
   position: fixed;
   top: 0;
@@ -375,9 +376,10 @@ header {
   }
 
   header .main-nav-link {
-    color: var(--color-text);
-    font-weight: 600;
-    font-size: 17px;
+    color: var(--color-ink);
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 27px;
     transition: color 0.15s ease;
   }
 
@@ -404,6 +406,13 @@ header {
     border-right: 2px solid currentcolor;
     border-bottom: 2px solid currentcolor;
     transform: translateY(-3px) rotate(45deg);
+    transition: transform 0.15s ease;
+  }
+
+  /* flip the caret up while the dropdown is open */
+  header .main-nav-item:has(ul):hover > p > a::after,
+  header .main-nav-item.is-open > p > a::after {
+    transform: translateY(2px) rotate(-135deg);
   }
 
   /* dropdown panel (authored as a nested ul) */
@@ -432,7 +441,7 @@ header {
   header .main-nav-item > ul a {
     display: block;
     padding: 8px 18px;
-    color: var(--color-text);
+    color: var(--color-ink);
     font-size: 15px;
     white-space: nowrap;
   }
@@ -442,7 +451,11 @@ header {
     background: var(--color-gray-100);
   }
 
-  /* DSCSA Portal pill */
+  /* DSCSA Portal pill — center it in the header row */
+  header .actions-section > .default-content {
+    height: var(--header-height);
+  }
+
   header .actions-section a {
     display: inline-block;
     padding: 12px 24px;

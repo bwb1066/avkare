@@ -156,8 +156,8 @@
   --spacing-s: 8px;
   --spacing-xs: 4px;
 
-  /* color schemes */
-  color-scheme: light dark;
+  /* color schemes — AvKARE is a light-only site */
+  color-scheme: light;
 
   /* color tokens */
   --color-gray-100: #f1f1f1;
@@ -250,6 +250,7 @@
   --color-text: light-dark(var(--color-dark), var(--color-light));
   --color-link: light-dark(var(--color-gray-900), var(--color-gray-100));
   --brand-red: #d40000;
+  --color-ink: #231f20;
   --color-brand: var(--brand-red);
   --color-accent: var(--brand-red);
   --color-background: light-dark(var(--color-light), var(--color-dark));
@@ -287,7 +288,7 @@
 }
 
 .dark-scheme {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 html {
@@ -476,5 +477,92 @@ aem-sidekick {
 
   &[open="true"].is-ready {
     opacity: 1;
+  }
+}
+
+/* ── Home: "Who We Are" intro (the default-content-only section) ──── */
+main .section:has(> .default-content):not(:has(> .block-content)) > .default-content {
+  max-width: var(--grid-container-width);
+  margin-inline: auto;
+  padding-block: clamp(48px, 7vw, 88px);
+  text-align: center;
+
+  strong { font-weight: inherit; }
+
+  p:nth-of-type(1) { /* red all-caps eyebrow */
+    margin: 0 0 20px;
+    color: var(--brand-red);
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 36px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  p:nth-of-type(2) { /* heading */
+    margin: 0 0 20px;
+    color: var(--color-ink);
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 48px;
+  }
+
+  p:nth-of-type(3) { /* body */
+    margin: 0;
+    color: var(--color-ink);
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+  }
+}
+
+/* ── Home: value cards (3 image cards on a gray band) ─────────────── */
+main .section:has(.card) {
+  padding-block: clamp(40px, 6vw, 72px);
+  background: #6e6e6e;
+}
+
+main .section:has(.card) .block-content:has(> .card) {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(16px, 2.5vw, 32px);
+  max-width: var(--grid-container-width);
+  margin-inline: auto;
+}
+
+main .section:has(.card) .card {
+  overflow: visible;
+  background: none;
+  box-shadow: none;
+}
+
+main .section:has(.card) .card-content-container {
+  padding: 0;
+}
+
+main .section:has(.card) .card picture {
+  display: block;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+main .section:has(.card) .card img {
+  display: block;
+  width: 100%;
+  height: clamp(180px, 20vw, 280px);
+  object-fit: cover;
+}
+
+main .section:has(.card) .card p {
+  margin: 16px 0 0;
+  color: #fff;
+  font-weight: 700;
+  font-size: clamp(16px, 1.3vw, 20px);
+  text-align: center;
+}
+
+@media (width < 700px) {
+  main .section:has(.card) .block-content:has(> .card) {
+    grid-template-columns: 1fr;
   }
 }
