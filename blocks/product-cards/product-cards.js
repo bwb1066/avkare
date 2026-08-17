@@ -6,10 +6,10 @@ import store from '../../scripts/commerce.js';
  * tenant-generic (specs render from each product's `specs` map).
  *
  * Authoring contract — labeled rows (| key | value |), all optional:
- *   | heading  | Featured Optics          |  section title
- *   | skus     | 42722, 49278, 33421      |  explicit SKUs, in order
- *   | query    | doublet                  |  free-text catalog search
- *   | category | Optics                   |  filter by category
+ *   | heading  | Featured Products        |  section title
+ *   | skus     | AV-00003, AV-00007       |  explicit SKUs, in order
+ *   | query    | metformin                |  free-text catalog search
+ *   | category | Analgesics               |  filter by category
  *   | limit    | 6                        |  max cards (default 6)
  *   | search   | yes                      |  render a live spec search box
  *
@@ -56,7 +56,7 @@ function availabilityPill(product) {
     pill.textContent = 'In stock';
   } else {
     pill.classList.add('is-lead');
-    pill.textContent = `Made to order · ${product.lead_time_days}d`;
+    pill.textContent = `Backordered · ${product.lead_time_days}d`;
   }
   return pill;
 }
@@ -91,7 +91,7 @@ function buildCard(product) {
 
   const sku = document.createElement('p');
   sku.className = 'product-card-sku';
-  sku.textContent = `Stock #${product.sku}`;
+  sku.textContent = `Item #${product.sku}`;
 
   const price = document.createElement('p');
   price.className = 'product-card-price';

@@ -35,7 +35,7 @@ function lineRow(line) {
     <img class="quote-cart-thumb" src="${line.image_url}" alt="" loading="lazy">
     <div class="quote-cart-info">
       <p class="quote-cart-name">${line.name}</p>
-      <p class="quote-cart-meta">Stock #${line.sku} · ${store.formatPrice(line.unit_price)} ea ${lead}</p>
+      <p class="quote-cart-meta">Item #${line.sku} · ${store.formatPrice(line.unit_price)} ea ${lead}</p>
       <div class="quote-cart-qty">
         <button type="button" class="quote-cart-step" data-step="-1" aria-label="Decrease quantity">−</button>
         <span class="quote-cart-qval">${line.qty}</span>

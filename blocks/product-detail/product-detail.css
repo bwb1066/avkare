@@ -145,8 +145,8 @@
   padding: 12px 16px;
   font: inherit;
   font-weight: 700;
-  color: #131313;
-  background: var(--cta-color, #ffcd00);
+  color: #fff;
+  background: var(--cta-color, #d40000);
   border: 0;
   border-radius: var(--rounded-sm, 3px);
   cursor: pointer;

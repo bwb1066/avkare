@@ -250,6 +250,8 @@
   --color-text: light-dark(var(--color-dark), var(--color-light));
   --color-link: light-dark(var(--color-gray-900), var(--color-gray-100));
   --brand-red: #d40000;
+  --cta-color: #d40000; /* commerce CTA — avkare red, not the ported EO yellow */
+  --cta-color-hover: #b00000;
   --color-ink: #231f20;
   --color-brand: var(--brand-red);
   --color-accent: var(--brand-red);

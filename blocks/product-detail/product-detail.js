@@ -71,7 +71,7 @@ export default async function decorate(block) {
     const notice = document.createElement('p');
     notice.className = 'product-detail-notice';
     notice.textContent = sku
-      ? `Stock #${sku} is not available in this catalog view.`
+      ? `Item #${sku} is not available in this catalog view.`
       : 'No product specified.';
     block.append(notice);
     return;
@@ -88,13 +88,13 @@ export default async function decorate(block) {
   head.innerHTML = `
     <p class="product-detail-eyebrow">${product.category || ''}</p>
     <h1 class="product-detail-name">${product.name}</h1>
-    <p class="product-detail-sku">Stock #${product.sku}</p>
+    <p class="product-detail-sku">Item #${product.sku}</p>
     <p class="product-detail-desc">${product.description || ''}</p>`;
 
   if (product.restricted) {
     const flag = document.createElement('p');
     flag.className = 'product-detail-restricted';
-    flag.textContent = `Export-controlled — ${product.restriction || 'entitlement required'}. Shown because contract entitlement is active.`;
+    flag.textContent = `${product.restriction || 'DEA controlled substance — DEA account and entitlement required'}. Shown because your entitlement is active.`;
     head.append(flag);
   }
 
@@ -103,7 +103,7 @@ export default async function decorate(block) {
   if (product.stock_qty > 0) {
     avail.innerHTML = `<span class="is-stock">In stock</span> · ${product.stock_qty} available${product.lead_time_days ? ` · ${product.lead_time_days}-day lead beyond stock` : ''}`;
   } else {
-    avail.innerHTML = `<span class="is-lead">Made to order</span> · ${product.lead_time_days}-day lead time`;
+    avail.innerHTML = `<span class="is-lead">Backordered</span> · ${product.lead_time_days}-day lead time`;
   }
 
   const buy = document.createElement('div');
