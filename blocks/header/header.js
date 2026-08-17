@@ -2,6 +2,7 @@ import { getConfig, getMetadata } from '../../scripts/ak.js';
 import { loadFragment } from '../fragment/fragment.js';
 import { setColorScheme } from '../section-metadata/section-metadata.js';
 import { createConciergeTrigger } from '../../scripts/concierge.js';
+import store from '../../scripts/commerce.js';
 
 const { locale } = getConfig();
 
@@ -197,6 +198,17 @@ function createCartTrigger() {
   a.href = '/products';
   a.setAttribute('aria-label', 'Your quote');
   a.innerHTML = `${CART_SVG}<span class="nav-cart-count">0</span>`;
+  // Keep the badge in sync on EVERY page (the quote-cart block, which otherwise
+  // hydrates it, only loads on commerce pages). commerce.js resolves the cart on
+  // load and pushes live updates (Realtime + concierge add-to-quote) via subscribe.
+  const badge = a.querySelector('.nav-cart-count');
+  const sync = () => {
+    const count = store.quoteCount(store.getQuote());
+    badge.textContent = count;
+    a.classList.toggle('has-items', count > 0);
+  };
+  store.subscribe(sync);
+  sync();
   return a;
 }
 
