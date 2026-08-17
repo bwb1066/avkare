@@ -23,11 +23,16 @@
 
 import { getMetadata } from './ak.js';
 
+// eslint-disable-next-line max-len
+const DEFAULT_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN5anF1d2hrbXp5ZWRrd3VhZmZjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUwNjY4MjcsImV4cCI6MjA5MDY0MjgyN30.GkMBLXBZr9u34m4uI6ZR-2ZniLZD3RkjropjQw058k4';
 const SITE_KEY = getMetadata('commerce-site') || 'avkare';
 const CATALOG_URL = getMetadata('commerce-catalog') || '/drafts/data/avkare-catalog.json';
-const COMMERCE_URL = getMetadata('commerce-url') || '';
+// Default to REMOTE so the store (and the concierge add-to-quote bridge) reads
+// the shared brand_products catalog on ANY page — not just pages that authored
+// commerce-url. A page can still override via commerce-url metadata.
+const COMMERCE_URL = getMetadata('commerce-url') || 'https://cyjquwhkmzyedkwuaffc.supabase.co';
 // eslint-disable-next-line max-len
-const COMMERCE_KEY = getMetadata('commerce-key') || getMetadata('concierge-key') || '';
+const COMMERCE_KEY = getMetadata('commerce-key') || getMetadata('concierge-key') || DEFAULT_KEY;
 const REMOTE = !!COMMERCE_URL;
 const API = `${COMMERCE_URL}/functions/v1/commerce`;
 const SUPABASE_ESM = 'https://esm.sh/@supabase/supabase-js@2';

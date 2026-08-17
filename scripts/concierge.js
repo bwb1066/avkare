@@ -29,6 +29,10 @@ const SITE_KEY = getMetadata('concierge-site') || 'avkare';
 let chatModule = null;
 
 async function openConcierge() {
+  // Expose the commerce store (window.brandCommerce) so the widget can offer
+  // add-to-quote on any page — the sparkle lives in the global nav, but
+  // commerce.js otherwise only loads on pages that have a commerce block.
+  await import('./commerce.js');
   if (!chatModule) {
     // eslint-disable-next-line import/no-unresolved
     chatModule = await import(WIDGET_URL);
