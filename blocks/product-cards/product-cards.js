@@ -159,7 +159,7 @@ export default async function decorate(block) {
     const form = document.createElement('form');
     form.className = 'product-cards-search';
     form.setAttribute('role', 'search');
-    form.innerHTML = '<input type="search" placeholder="Search by spec — e.g. 25mm doublet 400-700nm" aria-label="Search products">';
+    form.innerHTML = '<input type="search" placeholder="Search by name or spec — e.g. amoxicillin 500 mg" aria-label="Search products">';
     const input = form.querySelector('input');
     form.addEventListener('submit', (e) => {
       e.preventDefault();
