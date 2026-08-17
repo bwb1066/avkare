@@ -1,6 +1,7 @@
 import { getConfig, getMetadata } from '../../scripts/ak.js';
 import { loadFragment } from '../fragment/fragment.js';
 import { setColorScheme } from '../section-metadata/section-metadata.js';
+import { createConciergeTrigger } from '../../scripts/concierge.js';
 
 const { locale } = getConfig();
 
@@ -184,6 +185,9 @@ function decorateNavSection(section) {
 
 async function decorateActionSection(section) {
   section.classList.add('actions-section');
+  // Brand Concierge affordance — sparkle trigger leads the nav actions.
+  const content = section.querySelector('.default-content') || section;
+  content.prepend(createConciergeTrigger({ label: 'Ask AI' }));
 }
 
 async function decorateHeader(fragment) {

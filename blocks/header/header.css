@@ -453,6 +453,9 @@ header {
 
   /* DSCSA Portal pill — center it in the header row */
   header .actions-section > .default-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
     height: var(--header-height);
   }
 
@@ -473,3 +476,34 @@ header {
     background: #000;
   }
 }
+
+/* ── Brand Concierge nav trigger (sparkle) ─────────────────────────── */
+.nav-concierge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--brand-red);
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.15s;
+}
+
+.nav-concierge:hover {
+  background: #b00000;
+  transform: translateY(-1px);
+}
+
+.nav-concierge svg {
+  width: 18px;
+  height: 18px;
+}
+
