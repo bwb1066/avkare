@@ -475,6 +475,60 @@ header {
   header .actions-section a:hover {
     background: #000;
   }
+
+  /* the cart is an icon link, not a dark pill like the DSCSA CTA */
+  header .actions-section a.nav-cart {
+    padding: 8px;
+    background: none;
+    color: var(--color-ink);
+    border-radius: 10px;
+  }
+
+  header .actions-section a.nav-cart:hover {
+    background: #f1f1f1;
+    color: var(--brand-red);
+  }
+}
+
+/* ── Quote-cart nav trigger ────────────────────────────────────────── */
+.nav-cart {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 10px;
+  color: var(--color-ink);
+}
+
+.nav-cart:hover {
+  background: #f1f1f1;
+  color: var(--brand-red);
+}
+
+.nav-cart svg {
+  width: 24px;
+  height: 24px;
+}
+
+.nav-cart-count {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  border-radius: 999px;
+  background: var(--brand-red);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 18px;
+  text-align: center;
+}
+
+.nav-cart:not(.has-items) .nav-cart-count {
+  display: none;
 }
 
 /* ── Brand Concierge nav trigger (sparkle) ─────────────────────────── */

@@ -183,10 +183,28 @@ function decorateNavSection(section) {
   }
 }
 
+const CART_SVG = '<svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'
+  + '<path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>';
+
+/**
+ * Quote-cart affordance for the nav. The quote-cart block wires its drawer to
+ * the `.nav-cart-count` badge inside this link (see quote-cart wireHeaderCart);
+ * on pages without that block, the link falls through to the shop page.
+ */
+function createCartTrigger() {
+  const a = document.createElement('a');
+  a.className = 'nav-cart';
+  a.href = '/products';
+  a.setAttribute('aria-label', 'Your quote');
+  a.innerHTML = `${CART_SVG}<span class="nav-cart-count">0</span>`;
+  return a;
+}
+
 async function decorateActionSection(section) {
   section.classList.add('actions-section');
-  // Brand Concierge affordance — sparkle trigger leads the nav actions.
+  // Lead the nav actions with the concierge sparkle, then the quote cart.
   const content = section.querySelector('.default-content') || section;
+  content.prepend(createCartTrigger());
   content.prepend(createConciergeTrigger({ label: 'Ask AI' }));
 }
 
